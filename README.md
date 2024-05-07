@@ -1,4 +1,4 @@
-# mpz-example
+# mpz-ts-example
 
 Example project using [`mpz-ts`](https://www.npmjs.com/package/mpz-ts).
 
