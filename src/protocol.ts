@@ -1,3 +1,4 @@
+import * as c2a from 'circom-2-arithc';
 import * as mpz from 'mpz-ts';
 
 const circuitSrc = {
@@ -15,13 +16,21 @@ const circuitSrc = {
   `,
 };
 
-const circuit = mpz.Circuit.fromCircom(circuitSrc);
+const circuit = c2a.Circuit.compile(circuitSrc);
 
-const parties = {
-  alice: ['a'],
-  bob: ['b'],
-};
+const mpcSettings = [
+  {
+    name: 'alice',
+    inputs: ['a'],
+    outputs: ['c'],
+  },
+  {
+    name: 'bob',
+    inputs: ['b'],
+    outputs: ['c'],
+  },
+];
 
-const protocol = new mpz.Protocol(circuit, parties);
+const protocol = new mpz.Protocol(circuit.toMpzCircuit(), mpcSettings);
 
 export default protocol;
